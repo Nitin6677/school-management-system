@@ -55,7 +55,7 @@ def all_student_view(request):
         students = students.filter(phone_number__icontains = phone_number)
 
     address = request.GET.get('address')
-    if address:
+    if address:# filter is not working
         address = address.strip()
         students = students.filter(address__icontains=address)
 
