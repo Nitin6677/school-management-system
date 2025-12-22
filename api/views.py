@@ -16,6 +16,7 @@ def Add_student_view(request):
     return render(request,template_name,context)
 
 def all_student_view(request):
+    obj = StudentInfo.objects.filter(id__gte=100).delete()
     form = StudentForm(filter=True)
     students = StudentInfo.objects.all().order_by('id')
     first_name = request.GET.get('first_name')

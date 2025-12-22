@@ -4,16 +4,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}
     <title>Attendance</title>
+    {% endblock %}
+
+    
 </head>
+{% block content %}
 <body>
-    <form method ='post'>
+    <form method ='post' class="container mt-5">
         {% csrf_token %}
-        <button type="button">
-    Go to Attendance
-</button>
-
-
+        <input type="hidden" name="id" value="{{form.instance.id}}">
+        {{form.as_p}}
+        <button type="submit" class="btn btn-success">Go to Attendance</button>
+        <a href="{% url 'attendance_list' %}">
+            RESET
+        </a>
     </form>
+
+    {% if attendance %}
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>ACTION</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in attendance %}
+            <tr>
+                <th>{{record.student.first_name}}</th>
+                <td>{{record.student.last_name}}</td>
+                <td>{{record.date|date:"d-m-Y" }}</td>
+                <td>{{record.get_status_display}}</td>
+                <td>
+                <a href="{% url 'attendance_list' %}?id={{record.id}}&action=update" ><button class="btn btn-sm btn-warning">Edit</button></a>
+                <a href="{% url 'attendance_list' %}?id={{record.id}}&action=delete"><button class="btn btn-sm btn-danger">Delete</button></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
 </body>
+{% endblock %}
 </html>
