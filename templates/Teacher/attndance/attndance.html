@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>attndance</title>
+    {% endblock %}
+
+{% block content%}
+<body>
+    <center>
+        <h1> Teacher Attendance</h1>
+    <form method="post" class="container-fluid mt-5">
+        
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit" class="btn btn-success">submit</button>
+        <button type="reset" class="btn btn-warning">Reset</button>
+    </form>
+    </center>
+</body>
+{% endblock %}

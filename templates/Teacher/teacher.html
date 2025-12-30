@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+    {% block title %}
+    <title>Teacher</title>
+    {% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+    <form method="post">
+        <h1>Teacher Registration form</h1>
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit" class="btn btn-primary mb-5 ">Save</button>
+        <button type="reset" class="btn btn-warning mb-5">Reset</button>
+
+    </form>
+    </div>
+{% endblock %}

@@ -44,6 +44,6 @@ def attendance_view(request):
             instance = form.save()
             attendance = Attendance.objects.filter(date = instance.date)
 
-    template_name='attendance/attendance.html'
+    template_name='app1/attendance/attendance.html'
     context={'form':form, "attendance":attendance}
     return render(request,template_name,context)

@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>All Teacher</title>
+{% endblock %}
+
+{% block content %}
+<body>
+    <div class="container-fluid mt-1">
+   <table  class="table"> 
+    <thead>
+        <tr>
+            <th> First Name</th>
+            <th> last Name</th>
+            <th> Date of birth</th>
+            <th>City name</th>
+            <th>Adhar Number</th>
+            <th>Roll Number</th>
+            <th>School Name</th>
+            <th>Department</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Address</th>
+            <th>Addmission</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for record in form %}
+        <tr>
+            <td>{{record.first_name}}</td>
+            <td>{{record.last_name}}</td>
+            <td>{{record.date_of_birth}}</td>
+            <td>{{record.city_name}}</td>
+            <td>{{record.adhar_number}}</td>
+            <td>{{record.roll_number}}</td>
+            <td>{{record.school_name}}</td>
+            <td>{{record.Department}}</td>
+            <td>{{record.email}}</td>
+            <td>{{record.phone_number}}</td>
+            <td>{{record.address}}</td>
+            <td>{{record.addmission_in_school}}</td>
+            <td>
+                <a href="{% url 'update' record.id %}"><button class="btn btn-warning">Update</button></a>
+               <a href="{% url 'delete' record.id %}"><button class="btn btn-danger">Delete</button></a>
+               <a href="{% url 'delete' record.id %}"><button class="btn btn-primary">Result</button></a>  
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+   </table>
+   </div>
+    
+</body>
+{% endblock %}
